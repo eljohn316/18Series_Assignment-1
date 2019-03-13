@@ -7,9 +7,10 @@ app = Flask(__name__)
 @app.route('/holiday', methods=['POST'])
 def holiday():
 	country = request.form['country']
-	resp = requests.get('https://holidayapi.com/v1/holidays?key=25cdcb8e-9da8-4d95-9383-fd41dd2404eb&country='+country+'&year=2018')
+	
+	resp = requests.get('https://holidayapi.com/v1/holidays?key=a7e448b9-c572-4a51-8fdc-282ecb77c33d&country='+country+'&year=2019&month=01&day=01')
 	json_object = resp.json()
-	data = json_object['holidays']
+	data = str(json_object['holidays'][0]['name'])
 	# data = json_object['holidays']['name'] 
 	return render_template('holiday.html', data=data)
 
